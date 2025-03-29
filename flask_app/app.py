@@ -2,11 +2,24 @@ import os
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+# import keras
+
+# from tf.keras.preprocessing.image import ImageDataGenerator
+
+# from keras.applications import ImageDataGenerator
+
+from keras.src.legacy.preprocessing.image import ImageDataGenerator
+
+# from keras.preprocessing.image import ImageDataGenerator
+
+# from keras.src.preprocessing import ImageDataGenerator
+
+# from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
 
 
 
-DATASET_PATH = "dataset/"  # Path to the dataset
+
+DATASET_PATH = r"D:\lmth\python\Bone_Fracture_Detector\dataset"  # Path to the dataset
 TRAIN_PATH = os.path.join(DATASET_PATH, "train")
 VALID_PATH = os.path.join(DATASET_PATH, "valid")
 IMG_SIZE = (224, 224)  # ResNet-50 requires 224x224 images
@@ -27,11 +40,11 @@ train_datagen = ImageDataGenerator(
 valid_datagen = ImageDataGenerator(rescale=1./255)  # Only normalization for validation
 
 train_generator = train_datagen.flow_from_directory(
-    TRAIN_PATH, target_size=IMG_SIZE, batch_size=BATCH_SIZE, class_mode="binary"
+    TRAIN_PATH, target_size=IMG_SIZE, batch_size=BATCH_SIZE, class_mode="categorical"
 )
 
 valid_generator = valid_datagen.flow_from_directory(
-    VALID_PATH, target_size=IMG_SIZE, batch_size=BATCH_SIZE, class_mode="binary"
+    VALID_PATH, target_size=IMG_SIZE, batch_size=BATCH_SIZE, class_mode="categorical"
 )
 
 
