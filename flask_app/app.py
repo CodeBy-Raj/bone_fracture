@@ -41,3 +41,4 @@ for i in range(6):
     plt.imshow(sample_images[i])
     plt.axis("off")
 plt.show()
+  
